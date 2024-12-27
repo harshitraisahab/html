@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drinks - Burger Games Café</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        header {
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+        .menu-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .menu-item .details {
+            flex-grow: 1;
+        }
+        .menu-item .details span {
+            display: block;
+        }
+        .menu-item button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .menu-item button:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #444;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Drinks - Burger Games Café</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="burgers.html">Burgers</a>
+        <a href="pizzas.html">Pizzas</a>
+        <a href="wraps.html">Wraps</a>
+        <a href="snacks.html">Snacks</a>
+        <a href="drinks.html">Drinks</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+
+    <div class="menu-section">
+        <div class="menu-item">
+            <img src="images/oreo-shake.jpg" alt="Oreo Shake">
+            <div class="details">
+                <span>Games Oreo Shake</span>
+                <span>₹99</span>
+            </div>
+            <button onclick="addToCart('Games Oreo Shake', 99)">Add to Cart</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="images/cold-coffee.jpg" alt="Cold Coffee">
+            <div class="details">
+                <span>Games Cold Coffee</span>
+                <span>₹99</span>
+            </div>
+            <button onclick="addToCart('Games Cold Coffee', 99)">Add to Cart</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="images/masala-cold-drink.jpg" alt="Masala Cold Drink">
+            <div class="details">
+                <span>Chilled Masala Cold Drink</span>
+                <span>₹40</span>
+            </div>
+            <button onclick="addToCart('Chilled Masala Cold Drink', 40)">Add to Cart</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="images/strawberry-shake.jpg" alt="Strawberry Shake">
+            <div class="details">
+                <span>Games Strawberry Shake</span>
+                <span>₹99</span>
+            </div>
+            <button onclick="addToCart('Games Strawberry Shake', 99)">Add to Cart</button>
+        </div>
+
+        <!-- Add other drink items similarly -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Burger Games Café. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            alert(`${item} has been added to your cart!`);
+        }
+
+        function placeOrder() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const phoneNumber = "9540724212"; // Replace with café's WhatsApp number
+            let message = "Hello, I would like to order:\n\n";
+
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.item} - ₹${item.price}\n`;
+            });
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            message += `\nTotal: ₹${total}`;
+
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
